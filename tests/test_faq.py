@@ -26,7 +26,7 @@ class TestFAQSection:
         ],
     )
     def test_faq_dropdown_by_index(self, driver, faq_index, expected_text_contains):
-        main_page = MainPage(self.driver)
+        main_page = MainPage(driver)
         main_page.open_main_page()
         main_page.open_faq_item_by_index(faq_index)
         panel_text = main_page.get_faq_item_panel_text_by_index(faq_index)
@@ -38,7 +38,7 @@ class TestFAQSection:
     @allure.title("Print all FAQ content for debugging")
     def test_print_all_faq_content(self, driver):
         """Helper test to print the actual content of all FAQ items for debugging."""
-        main_page = MainPage(self.driver)
+        main_page = MainPage(driver)
         main_page.open_main_page()
 
         for i in range(1, 9):

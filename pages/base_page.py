@@ -13,8 +13,17 @@ class BasePage:
         self.base_url = BASE_URL
         self.default_timeout = DEFAULT_TIMEOUT
 
+    def get_url(self, url):
+        """Navigate to the specified URL using the driver."""
+        self.driver.get(url)
+
     def open(self):
-        self.driver.get(self.base_url)
+        """Open the base URL of the page."""
+        self.get_url(self.base_url)
+
+    def get_current_url(self):
+        """Get the current URL of the browser."""
+        return self.driver.current_url
 
     def wait_for_element_visible(self, locator, timeout=None):
         if timeout is None:
@@ -99,8 +108,14 @@ class BasePage:
             message="New page did not load completely",
         )
 
-    def get_current_url(self):
-        return self.driver.current_url
+    def switch_to_window(self, handle):
+        """Switch to a specific window handle."""
+        self.driver.switch_to.window(handle)
+        self.wait_for_page_loaded()
+
+    def get_window_handles(self):
+        """Get all current window handles."""
+        return self.driver.window_handles
 
     def wait_for_page_loaded(self, timeout=None):
         if timeout is None:

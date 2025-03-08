@@ -40,7 +40,7 @@ class MainPage(BasePage):
 
     @allure.step("Click on Yandex logo")
     def click_yandex_logo(self):
-        original_handles = self.driver.window_handles
+        original_handles = self.get_window_handles()
 
         self.click_element(self.locators.YANDEX_LOGO)
 
@@ -105,9 +105,7 @@ class MainPage(BasePage):
             self.locators.FAQ_ITEM_INDEX_TEMPLATE[1].format(index),
         )
 
-        element = WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable(locator)
-        )
+        element = self.wait_for_element_clickable(locator)
 
         self.driver.execute_script(
             "arguments[0].scrollIntoView({block: 'center'});", element

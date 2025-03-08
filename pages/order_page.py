@@ -1,5 +1,4 @@
 import allure
-from selenium.webdriver.common.by import By
 
 from locators.order_page_locators import OrderPageLocators
 from pages.base_page import BasePage
@@ -18,7 +17,7 @@ class OrderPage(BasePage):
 
     @allure.step("Click on Yandex logo to navigate to Yandex")
     def click_yandex_logo(self):
-        original_handles = self.driver.window_handles
+        original_handles = self.get_window_handles()
 
         self.click_element(self.locators.YANDEX_LOGO)
 
